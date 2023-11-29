@@ -28,7 +28,7 @@ const registerUser = asyncHandler(async (req, res, next) => {
         });
 
         if (existUser) {
-            throw new ApiError(409, "Email id alredy exists");
+            throw new ApiError(409, "Email id already exists");
         }
 
         const avatarLocalPath = req.files?.avatar[0]?.path;
@@ -60,9 +60,7 @@ const registerUser = asyncHandler(async (req, res, next) => {
             new ApiResponse(200, createdUser, "User Registered successfully")
         );
     } catch (error) {
-        // Pass the error to the error-handling middleware
         next(error);
     }
 });
-
 export { registerUser };
